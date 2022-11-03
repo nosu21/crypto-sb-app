@@ -13,8 +13,8 @@ public class CoinHistorical {
   private String id;
   private String symbol;
   private String name;
-//  @JsonIgnore
-//  private String date;
+  @JsonIgnore
+  private String date;
   private MarketData market_data;
 
 }

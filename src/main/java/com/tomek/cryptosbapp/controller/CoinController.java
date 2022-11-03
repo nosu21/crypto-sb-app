@@ -1,5 +1,7 @@
 package com.tomek.cryptosbapp.controller;
 
+import static java.lang.String.format;
+
 import com.tomek.cryptosbapp.model.Coin;
 import com.tomek.cryptosbapp.model.CoinHistorical;
 import com.tomek.cryptosbapp.model.InputHistoricalParams;
@@ -25,15 +27,13 @@ public class CoinController {
 
   @PostMapping("/getHistorical")
   public String historicalData(@ModelAttribute InputHistoricalParams inputHistoricalParams, Model model) {
-    CoinHistorical coinHistorical;
-    try {
-      coinHistorical = coinService.getCoin(inputHistoricalParams.getName().toLowerCase(), inputHistoricalParams.getDate());
+    CoinHistorical coinHistorical = coinService.getCoin(inputHistoricalParams.getName().toLowerCase(), inputHistoricalParams.getDate());
+    if (coinHistorical == null) {
+      model.addAttribute("errorMessage", format("not found with the specified name: %s", inputHistoricalParams.getName()));
+    } else {
       model.addAttribute("coinHistorical", coinHistorical);
-      return "historicalData";
-    } catch (HttpServerErrorException e) {
-      model.addAttribute("errorMessage", e.getStatusText());
-      return "historicalData";
     }
+    return "historicalData";
   }
 
   @GetMapping("/top5")

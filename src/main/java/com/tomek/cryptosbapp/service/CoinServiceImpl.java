@@ -9,6 +9,7 @@ import com.tomek.cryptosbapp.repository.CoinRepository;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import lombok.SneakyThrows;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -52,8 +53,13 @@ public class CoinServiceImpl implements CoinService{
   @Override
   public CoinHistorical getCoin(String name, String date) {
     String reversedDate = reverseDate(date);
-    CoinHistorical coinHistorical = restTemplate.getForObject(format(HISTORICAL_DATA_URL, name, reversedDate), CoinHistorical.class);
-//    coinHistorical.setDate(date);
+    CoinHistorical coinHistorical;
+    try{
+       coinHistorical = restTemplate.getForObject(format(HISTORICAL_DATA_URL, name, reversedDate), CoinHistorical.class);
+    } catch (Exception e) {
+      return null;
+    }
+    coinHistorical.setDate(date);
     return coinHistorical;
   }
 

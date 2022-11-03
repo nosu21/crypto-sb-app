@@ -10,5 +10,5 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrentPrice {
-  private double usd;
+  private int usd;
 }

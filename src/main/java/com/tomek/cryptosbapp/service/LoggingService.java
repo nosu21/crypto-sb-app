@@ -15,7 +15,7 @@ public class LoggingService {
     System.out.println("==========================================================Application refresh in 30 sec =========================");
   }
   public void logSaveData() {
-    System.out.println("===========================================crypto saved in db on localhost:8080/h2-console =======================");
+    System.out.println("===========================================crypto saved in db on localhost:8084/h2-console =======================");
   }
 
 }
