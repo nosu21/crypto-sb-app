@@ -7,10 +7,10 @@ By default, the application is exposed to http://localhost:8084/top5
 
 The database is exposed on port: http://localhost:8084/h2-console
 Credentials to the DB: 
-driver class: org.h2.Driver
-JDBC URL: jdbc:h2:mem:planner
-username: db_user
-password: db_pass
+<p>driver class: org.h2.Driver</p>
+<p>JDBC URL: jdbc:h2:mem:planner</p>
+<p>username: db_user</p>
+<p> password: db_pass</p>
 ![image](https://user-images.githubusercontent.com/9469220/199693415-03053dd9-5a2e-43f8-a469-3c60922dcd6c.png)
 
-<h1>HStack trace</h1>
+
