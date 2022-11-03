@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <style>
+    div {
+      padding-top: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      padding-left: 50px;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var x = document.forms["form"]["name"].value;
+      var y = document.forms["form"]["date"].value;
+      if (x == "" || x == null) {
+        alert("Name must be filled out");
+        return false;
+      }
+      if (y == "" || y == null) {
+        alert("Date must be filled out");
+        return false;
+      }
+    }
+  </script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="30">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div>
+<table class="table table-dark">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Current Price</th>
+    <th scope="col">Date of save in db</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!--/*@thymesVar id="coins" type="java"*/-->
+  <tr th:each="coin: ${coins}">
+    <td th:text="${coin.name}"></td>
+    <td th:text="${coin.currentPrice}"></td>
+    <td th:text="${coin.saveDate}"></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<div>
+  <h3>To get historical data enter a crypto name and year</h3>
+  <form name="form" th:action="getHistorical" th:method="post" th:object="${inputHistoricalParams}" onsubmit="return validateForm()">
+    <label for="name">name</label>
+    <input type="text" id="name" name="name" th:field="*{name}">
+    <label for="date">Start date:</label>
+    <input type="date" id="date" name="date" th:field="*{date}">
+    <button type="submit">Submit</button>
+  </form>
+</div>
+<div>
+  <a href="http://localhost:8084/h2-console">Link to the database</a>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

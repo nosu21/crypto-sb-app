@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table
+      author: tnosal
+      changes:
+        - createTable:
+            tableName: coin
+            columns:
+              - column:
+                  name: id
+                  type: varchar(32)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: symbol
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: current_price
+                  type: varchar(255)
+              - column:
+                  name: last_updated
+                  type: datetime
+              - column:
+                  name: save_date
+                  type: datetime
+
